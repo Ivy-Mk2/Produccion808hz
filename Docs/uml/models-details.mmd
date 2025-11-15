@@ -1,0 +1,74 @@
+classDiagram
+  class User {
+    +Id
+    +UserName
+    +PasswordHash
+    +Role
+    +IsActive
+  }
+  class Cliente {
+    +Id
+    +Dni
+    +Nombre
+    +Contacto
+    +Direccion
+    +Estado
+  }
+  class Producto {
+    +Id
+    +Nombre
+    +Precio
+    +Categoria
+    +Estado
+    +Stock
+  }
+  class Cotizacion {
+    +Id
+    +ClienteId
+    +Fecha
+    +Subtotal
+    +Impuestos
+    +Total
+    +Estado
+  }
+  class CotizacionItem {
+    +ProductoId
+    +Cantidad
+    +PrecioUnitario
+    +Descuento
+    +Importe
+  }
+  class Reserva {
+    +Id
+    +Fecha
+    +HoraInicio
+    +HoraFin
+    +EquipoId
+    +TecnicoId
+    +ClienteId
+    +Estado
+  }
+  class Tecnico {
+    +Id
+    +Nombre
+    +Especialidad
+    +Disponibilidad
+    +Nivel
+  }
+  class Accion {
+    +Tipo
+    +Payload
+    +Timestamp
+  }
+  class Paquete {
+    +Id
+    +Nombre
+    +Productos[]
+  }
+
+  Cliente "1" --> "*" Cotizacion
+  Cotizacion "1" o-- "*" CotizacionItem
+  CotizacionItem "*" --> "1" Producto
+  Reserva "*" --> "1" Producto
+  Reserva "*" --> "1" Tecnico
+  Paquete "1" --> "*" Producto

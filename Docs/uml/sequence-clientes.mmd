@@ -1,0 +1,10 @@
+sequenceDiagram
+  participant V as View (Clientes)
+  participant P as Presenter (Clientes)
+  participant S as ClientService
+  participant J as JsonStorageService
+  V->>P: Guardar nuevo cliente
+  P->>S: Validar y preparar entidad
+  S->>J: Persistir en data/Clients.json
+  S-->>P: OK
+  P-->>V: Actualizar listado

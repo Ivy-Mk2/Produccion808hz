@@ -1,0 +1,15 @@
+sequenceDiagram
+  participant V as View (MainForm)
+  participant P as Presenter
+  participant Q as QuoteService
+  participant U as UndoRedoService
+  participant J as JsonStorageService
+  V->>P: Agregar item
+  P->>Q: Insertar item
+  Q-->>P: Total
+  P->>U: Push acción
+  V->>P: Deshacer
+  P->>U: Pop
+  P->>Q: Revertir
+  V->>P: Guardar
+  P->>J: Persistir

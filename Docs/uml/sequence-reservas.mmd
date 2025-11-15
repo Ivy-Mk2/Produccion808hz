@@ -1,0 +1,12 @@
+sequenceDiagram
+  participant V as View
+  participant P as Presenter
+  participant R as ReservationService
+  V->>P: Seleccionar día
+  P->>R: Cargar lista doble
+  V->>P: Siguiente
+  P->>R: next
+  V->>P: Anterior
+  P->>R: prev
+  V->>P: Insertar/Eliminar
+  P->>R: Operar en lista

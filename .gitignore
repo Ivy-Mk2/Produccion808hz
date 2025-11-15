@@ -1,0 +1,94 @@
+# .gitignore para proyecto Visual Studio / .NET
+# Generado por asistente — ajusta según necesites
+
+# Build Folders
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache and databases
+*.VC.db
+*.VC.opendb
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+
+# Publish outputs
+**/publish/
+publish/
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+
+# Test results
+TestResults/
+*.trx
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+*.bak
+*.orig
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userprefs
+
+# ReSharper
+_ReSharper*/
+*.ReSharper*/
+*.DotSettings.user
+
+# Coverage and profiler
+*.coverage
+*.coveragexml
+*.testsettings
+*.ncrunch*
+
+# Database files (uncomment if you keep DB files out of repo)
+# *.mdf
+# *.ldf
+
+# MonoDevelop/Xamarin
+*.userprefs
+
+# Windows thumbnail cache, Recycle Bin
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# JetBrains Rider
+.idea/
+
+# Ignore build outputs and debug symbols
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.obj
+
+# Ignore package folders used by some tools
+node_modules/
+
+# End of .gitignore

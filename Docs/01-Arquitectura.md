@@ -1,0 +1,105 @@
+# Arquitectura MVP del sistema
+
+El proyecto sigue un esquema MVP con capas separadas:
+- Models: entidades del dominio (Cliente, Producto, Cotización, Reserva, Técnico, Acción).
+- Services: lógica de negocio y uso de estructuras de datos obligatorias.
+- Presenters: orquestan la interacción entre UI y servicios.
+- Views: UI (WinForms) para demostraciones y operación.
+
+## Mapa de módulos y flujo de datos
+```mermaid
+flowchart LR
+    subgraph Views
+      V1[LoginForm]
+      V2[MainForm]
+      V3[ClientsView]
+    end
+
+    subgraph Presenters
+      P1[LoginPresenter]
+      P2[MainPresenter]
+      P3[ClientsPresenter]
+    end
+
+    subgraph Services
+      S1[UserService]
+      S2[QuoteService]
+      S3[ReservationService]
+      S4[InventoryService]
+      S5[UndoRedoService]
+      S6[LogisticsService]
+      S7[PackageService]
+      S8[ClientIndexService]
+      S9[ProductIndexService]
+      S10[JsonStorageService]
+      S11[ClientService]
+
+      subgraph DataStructures
+        D1[SinglyLinkedList]
+        D2[DoublyLinkedList]
+        D3[CircularLinkedList]
+        D4[Stack]
+        D5[Queue]
+        D6[BinarySearchTree]
+        D7[Graph]
+        D8[HashTable]
+      end
+    end
+
+    subgraph Data
+      J1[Users.json]
+      J2[Clients.json]
+      J3[Products.json]
+      J4[Quotes.json]
+      J5[Reservations.json]
+      J6[Technicians.json]
+    end
+
+    V1 --> P1 --> S1 --> J1
+    V2 --> P2 --> S2
+    P2 --> S3
+    P2 --> S4
+    P2 --> S5
+    P2 --> S6
+    P2 --> S7
+    P2 --> S8
+    P2 --> S9
+    V3 --> P3 --> S11
+    S11 --> S10
+
+    S2 --- D1
+    S3 --- D2
+    S4 --- D3
+    S5 --- D4
+    S6 --- D5
+    S8 --- D6
+    S9 --- D6
+    S6 --- D7
+    S7 --- D7
+    S1 --- D8
+    S11 --- D6
+
+    S2 --> S10
+    S3 --> S10
+    S4 --> S10
+    S6 --> S10
+    S7 --> S10
+    S8 --> S10
+    S9 --> S10
+
+    S10 --> J2
+    S10 --> J3
+    S10 --> J4
+    S10 --> J5
+    S10 --> J6
+```
+
+## Navegación en MainForm
+- Menús/pestañas: Clientes, Cotizaciones, Reservas, Inventario, Logística, Paquetes.
+- Clientes: `ClientsView` → `ClientsPresenter` → `ClientService` → `JsonStorageService` (`data/Clients.json`).
+- Estructuras asociadas: ABB para índices por `Dni` y `Nombre`.
+
+## Principios
+- Separación de responsabilidades: estructuras encapsuladas en `services/DataStructures`.
+- Servicios desacoplados de la UI; persistencia en JSON.
+- Diagramas listos para informe y revisión docente.

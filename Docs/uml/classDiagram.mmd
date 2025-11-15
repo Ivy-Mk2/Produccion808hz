@@ -1,0 +1,44 @@
+classDiagram
+  class Cliente {
+    +id
+    +dni
+    +nombre
+    +contacto
+  }
+  class Producto {
+    +id
+    +nombre
+    +precio
+    +estado
+  }
+  class Cotizacion {
+    +id
+    +clienteId
+    +fecha
+    +items
+  }
+  class CotizacionItem {
+    +productoId
+    +cantidad
+    +precioUnitario
+  }
+  class Reserva {
+    +fecha
+    +hora
+    +recurso
+    +estado
+  }
+  class Tecnico {
+    +id
+    +nombre
+    +especialidad
+  }
+  class Accion {
+    +tipo
+    +payload
+  }
+
+  Cotizacion "1" --> "*" CotizacionItem
+  Cliente "1" --> "*" Cotizacion
+  Reserva "*" --> Producto
+  Tecnico "*" --> Reserva

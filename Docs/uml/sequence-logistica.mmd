@@ -1,0 +1,11 @@
+sequenceDiagram
+  participant P as Presenter
+  participant L as LogisticsService
+  P->>L: BFS origen
+  L-->>P: Alcanzables
+  P->>L: DFS A..B
+  L-->>P: Ruta
+  P->>L: Dijkstra A→B
+  L-->>P: Distancia mínima
+  P->>L: Floyd–Warshall
+  L-->>P: Matriz de costos
