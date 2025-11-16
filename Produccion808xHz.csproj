@@ -90,6 +90,12 @@
     <Compile Include="views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\DashboardView.cs" />
+    <Compile Include="views\ClientsView.cs" />
+    <Compile Include="views\CotizacionesView.cs" />
+    <Compile Include="views\ReservasView.cs" />
+    <Compile Include="views\InventarioView.cs" />
+    <Compile Include="views\ReportesView.cs" />
     <Compile Include="views\ILoginView.cs" />
     <Compile Include="views\LoginForm.cs">
       <SubType>Form</SubType>

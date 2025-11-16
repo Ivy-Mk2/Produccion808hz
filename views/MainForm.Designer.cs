@@ -48,37 +48,9 @@ namespace Produccion808xHz.views
             this.lblSectionSubtitle = new System.Windows.Forms.Label();
             this.lblSectionTitle = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
-            this.clientsPanel = new System.Windows.Forms.Panel();
-            this.lblClientStatus = new System.Windows.Forms.Label();
-            this.dgvClients = new System.Windows.Forms.DataGridView();
-            this.colClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colClientEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colClientPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colClientNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colClientCreated = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblClientSearch = new System.Windows.Forms.Label();
-            this.txtClientSearch = new System.Windows.Forms.TextBox();
-            this.grpNewClient = new System.Windows.Forms.GroupBox();
-            this.btnAddClient = new System.Windows.Forms.Button();
-            this.txtClientNotes = new System.Windows.Forms.TextBox();
-            this.lblClientNotes = new System.Windows.Forms.Label();
-            this.txtClientPhone = new System.Windows.Forms.TextBox();
-            this.lblClientPhone = new System.Windows.Forms.Label();
-            this.txtClientEmail = new System.Windows.Forms.TextBox();
-            this.lblClientEmail = new System.Windows.Forms.Label();
-            this.txtClientName = new System.Windows.Forms.TextBox();
-            this.lblClientName = new System.Windows.Forms.Label();
-            this.dashboardPanel = new System.Windows.Forms.Panel();
-            this.lblDashboardText = new System.Windows.Forms.Label();
-            this.lblDashboardWelcome = new System.Windows.Forms.Label();
             this.sidebarPanel.SuspendLayout();
             this.panelUser.SuspendLayout();
             this.topBarPanel.SuspendLayout();
-            this.contentPanel.SuspendLayout();
-            this.clientsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
-            this.grpNewClient.SuspendLayout();
-            this.dashboardPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // sidebarPanel
@@ -146,7 +118,7 @@ namespace Produccion808xHz.views
             this.btnReportes.TabIndex = 7;
             this.btnReportes.Text = "Reportes";
             this.btnReportes.UseVisualStyleBackColor = true;
-            this.btnReportes.Click += new System.EventHandler(this.NavComingSoon);
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
             // btnInventario
             // 
@@ -160,7 +132,7 @@ namespace Produccion808xHz.views
             this.btnInventario.TabIndex = 6;
             this.btnInventario.Text = "Inventario";
             this.btnInventario.UseVisualStyleBackColor = true;
-            this.btnInventario.Click += new System.EventHandler(this.NavComingSoon);
+            this.btnInventario.Click += new System.EventHandler(this.btnInventario_Click);
             // 
             // btnReservas
             // 
@@ -174,7 +146,7 @@ namespace Produccion808xHz.views
             this.btnReservas.TabIndex = 5;
             this.btnReservas.Text = "Reservas";
             this.btnReservas.UseVisualStyleBackColor = true;
-            this.btnReservas.Click += new System.EventHandler(this.NavComingSoon);
+            this.btnReservas.Click += new System.EventHandler(this.btnReservas_Click);
             // 
             // btnCotizaciones
             // 
@@ -188,7 +160,7 @@ namespace Produccion808xHz.views
             this.btnCotizaciones.TabIndex = 4;
             this.btnCotizaciones.Text = "Cotizaciones";
             this.btnCotizaciones.UseVisualStyleBackColor = true;
-            this.btnCotizaciones.Click += new System.EventHandler(this.NavComingSoon);
+            this.btnCotizaciones.Click += new System.EventHandler(this.btnCotizaciones_Click);
             // 
             // btnClientes
             // 
@@ -331,269 +303,14 @@ namespace Produccion808xHz.views
             this.lblSectionTitle.Text = "Dashboard";
             // 
             // contentPanel
-            // 
+            //
             this.contentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.contentPanel.Controls.Add(this.clientsPanel);
-            this.contentPanel.Controls.Add(this.dashboardPanel);
             this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contentPanel.Location = new System.Drawing.Point(220, 90);
             this.contentPanel.Name = "contentPanel";
             this.contentPanel.Padding = new System.Windows.Forms.Padding(25);
             this.contentPanel.Size = new System.Drawing.Size(980, 630);
             this.contentPanel.TabIndex = 2;
-            // 
-            // clientsPanel
-            // 
-            this.clientsPanel.BackColor = System.Drawing.Color.Transparent;
-            this.clientsPanel.Controls.Add(this.lblClientStatus);
-            this.clientsPanel.Controls.Add(this.dgvClients);
-            this.clientsPanel.Controls.Add(this.lblClientSearch);
-            this.clientsPanel.Controls.Add(this.txtClientSearch);
-            this.clientsPanel.Controls.Add(this.grpNewClient);
-            this.clientsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clientsPanel.Location = new System.Drawing.Point(25, 25);
-            this.clientsPanel.Name = "clientsPanel";
-            this.clientsPanel.Size = new System.Drawing.Size(930, 580);
-            this.clientsPanel.TabIndex = 1;
-            this.clientsPanel.Visible = false;
-            // 
-            // lblClientStatus
-            // 
-            this.lblClientStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblClientStatus.AutoSize = true;
-            this.lblClientStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblClientStatus.ForeColor = System.Drawing.Color.DimGray;
-            this.lblClientStatus.Location = new System.Drawing.Point(20, 548);
-            this.lblClientStatus.Name = "lblClientStatus";
-            this.lblClientStatus.Size = new System.Drawing.Size(0, 15);
-            this.lblClientStatus.TabIndex = 4;
-            // 
-            // dgvClients
-            // 
-            this.dgvClients.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvClients.AutoGenerateColumns = false;
-            this.dgvClients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvClients.BackgroundColor = System.Drawing.Color.White;
-            this.dgvClients.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colClientName,
-            this.colClientEmail,
-            this.colClientPhone,
-            this.colClientNotes,
-            this.colClientCreated});
-            this.dgvClients.Location = new System.Drawing.Point(20, 220);
-            this.dgvClients.MultiSelect = false;
-            this.dgvClients.Name = "dgvClients";
-            this.dgvClients.ReadOnly = true;
-            this.dgvClients.RowHeadersVisible = false;
-            this.dgvClients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClients.Size = new System.Drawing.Size(890, 320);
-            this.dgvClients.TabIndex = 3;
-            // 
-            // colClientName
-            // 
-            this.colClientName.DataPropertyName = "Name";
-            this.colClientName.HeaderText = "Nombre";
-            this.colClientName.Name = "colClientName";
-            this.colClientName.ReadOnly = true;
-            // 
-            // colClientEmail
-            // 
-            this.colClientEmail.DataPropertyName = "Email";
-            this.colClientEmail.HeaderText = "Correo";
-            this.colClientEmail.Name = "colClientEmail";
-            this.colClientEmail.ReadOnly = true;
-            // 
-            // colClientPhone
-            // 
-            this.colClientPhone.DataPropertyName = "Phone";
-            this.colClientPhone.HeaderText = "Teléfono";
-            this.colClientPhone.Name = "colClientPhone";
-            this.colClientPhone.ReadOnly = true;
-            // 
-            // colClientNotes
-            // 
-            this.colClientNotes.DataPropertyName = "Notes";
-            this.colClientNotes.HeaderText = "Notas";
-            this.colClientNotes.Name = "colClientNotes";
-            this.colClientNotes.ReadOnly = true;
-            // 
-            // colClientCreated
-            // 
-            this.colClientCreated.DataPropertyName = "CreatedAt";
-            this.colClientCreated.HeaderText = "Creado";
-            this.colClientCreated.Name = "colClientCreated";
-            this.colClientCreated.ReadOnly = true;
-            // 
-            // lblClientSearch
-            // 
-            this.lblClientSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblClientSearch.AutoSize = true;
-            this.lblClientSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblClientSearch.ForeColor = System.Drawing.Color.DimGray;
-            this.lblClientSearch.Location = new System.Drawing.Point(620, 25);
-            this.lblClientSearch.Name = "lblClientSearch";
-            this.lblClientSearch.Size = new System.Drawing.Size(86, 15);
-            this.lblClientSearch.TabIndex = 2;
-            this.lblClientSearch.Text = "Buscar cliente";
-            // 
-            // txtClientSearch
-            // 
-            this.txtClientSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClientSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtClientSearch.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtClientSearch.Location = new System.Drawing.Point(623, 45);
-            this.txtClientSearch.Name = "txtClientSearch";
-            this.txtClientSearch.Size = new System.Drawing.Size(287, 25);
-            this.txtClientSearch.TabIndex = 1;
-            this.txtClientSearch.TextChanged += new System.EventHandler(this.txtClientSearch_TextChanged);
-            // 
-            // grpNewClient
-            // 
-            this.grpNewClient.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpNewClient.BackColor = System.Drawing.Color.White;
-            this.grpNewClient.Controls.Add(this.btnAddClient);
-            this.grpNewClient.Controls.Add(this.txtClientNotes);
-            this.grpNewClient.Controls.Add(this.lblClientNotes);
-            this.grpNewClient.Controls.Add(this.txtClientPhone);
-            this.grpNewClient.Controls.Add(this.lblClientPhone);
-            this.grpNewClient.Controls.Add(this.txtClientEmail);
-            this.grpNewClient.Controls.Add(this.lblClientEmail);
-            this.grpNewClient.Controls.Add(this.txtClientName);
-            this.grpNewClient.Controls.Add(this.lblClientName);
-            this.grpNewClient.Location = new System.Drawing.Point(20, 20);
-            this.grpNewClient.Name = "grpNewClient";
-            this.grpNewClient.Size = new System.Drawing.Size(570, 184);
-            this.grpNewClient.TabIndex = 0;
-            this.grpNewClient.TabStop = false;
-            this.grpNewClient.Text = "Registrar nuevo cliente";
-            // 
-            // btnAddClient
-            // 
-            this.btnAddClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddClient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(182)))), ((int)(((byte)(122)))));
-            this.btnAddClient.FlatAppearance.BorderSize = 0;
-            this.btnAddClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddClient.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAddClient.ForeColor = System.Drawing.Color.White;
-            this.btnAddClient.Location = new System.Drawing.Point(420, 132);
-            this.btnAddClient.Name = "btnAddClient";
-            this.btnAddClient.Size = new System.Drawing.Size(130, 34);
-            this.btnAddClient.TabIndex = 8;
-            this.btnAddClient.Text = "Guardar";
-            this.btnAddClient.UseVisualStyleBackColor = false;
-            this.btnAddClient.Click += new System.EventHandler(this.btnAddClient_Click);
-            // 
-            // txtClientNotes
-            // 
-            this.txtClientNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClientNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtClientNotes.Location = new System.Drawing.Point(20, 132);
-            this.txtClientNotes.Multiline = true;
-            this.txtClientNotes.Name = "txtClientNotes";
-            this.txtClientNotes.Size = new System.Drawing.Size(380, 34);
-            this.txtClientNotes.TabIndex = 7;
-            // 
-            // lblClientNotes
-            // 
-            this.lblClientNotes.AutoSize = true;
-            this.lblClientNotes.Location = new System.Drawing.Point(17, 114);
-            this.lblClientNotes.Name = "lblClientNotes";
-            this.lblClientNotes.Size = new System.Drawing.Size(38, 15);
-            this.lblClientNotes.TabIndex = 6;
-            this.lblClientNotes.Text = "Notas";
-            // 
-            // txtClientPhone
-            // 
-            this.txtClientPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtClientPhone.Location = new System.Drawing.Point(294, 84);
-            this.txtClientPhone.Name = "txtClientPhone";
-            this.txtClientPhone.Size = new System.Drawing.Size(256, 23);
-            this.txtClientPhone.TabIndex = 5;
-            // 
-            // lblClientPhone
-            // 
-            this.lblClientPhone.AutoSize = true;
-            this.lblClientPhone.Location = new System.Drawing.Point(291, 66);
-            this.lblClientPhone.Name = "lblClientPhone";
-            this.lblClientPhone.Size = new System.Drawing.Size(51, 15);
-            this.lblClientPhone.TabIndex = 4;
-            this.lblClientPhone.Text = "Teléfono";
-            // 
-            // txtClientEmail
-            // 
-            this.txtClientEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtClientEmail.Location = new System.Drawing.Point(20, 84);
-            this.txtClientEmail.Name = "txtClientEmail";
-            this.txtClientEmail.Size = new System.Drawing.Size(256, 23);
-            this.txtClientEmail.TabIndex = 3;
-            // 
-            // lblClientEmail
-            // 
-            this.lblClientEmail.AutoSize = true;
-            this.lblClientEmail.Location = new System.Drawing.Point(17, 66);
-            this.lblClientEmail.Name = "lblClientEmail";
-            this.lblClientEmail.Size = new System.Drawing.Size(103, 15);
-            this.lblClientEmail.TabIndex = 2;
-            this.lblClientEmail.Text = "Correo electrónico";
-            // 
-            // txtClientName
-            // 
-            this.txtClientName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClientName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtClientName.Location = new System.Drawing.Point(20, 38);
-            this.txtClientName.Name = "txtClientName";
-            this.txtClientName.Size = new System.Drawing.Size(530, 23);
-            this.txtClientName.TabIndex = 1;
-            // 
-            // lblClientName
-            // 
-            this.lblClientName.AutoSize = true;
-            this.lblClientName.Location = new System.Drawing.Point(17, 20);
-            this.lblClientName.Name = "lblClientName";
-            this.lblClientName.Size = new System.Drawing.Size(108, 15);
-            this.lblClientName.TabIndex = 0;
-            this.lblClientName.Text = "Nombre del cliente";
-            // 
-            // dashboardPanel
-            // 
-            this.dashboardPanel.BackColor = System.Drawing.Color.White;
-            this.dashboardPanel.Controls.Add(this.lblDashboardText);
-            this.dashboardPanel.Controls.Add(this.lblDashboardWelcome);
-            this.dashboardPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dashboardPanel.Location = new System.Drawing.Point(25, 25);
-            this.dashboardPanel.Name = "dashboardPanel";
-            this.dashboardPanel.Size = new System.Drawing.Size(930, 580);
-            this.dashboardPanel.TabIndex = 0;
-            // 
-            // lblDashboardText
-            // 
-            this.lblDashboardText.AutoSize = true;
-            this.lblDashboardText.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblDashboardText.ForeColor = System.Drawing.Color.DimGray;
-            this.lblDashboardText.Location = new System.Drawing.Point(40, 110);
-            this.lblDashboardText.Name = "lblDashboardText";
-            this.lblDashboardText.Size = new System.Drawing.Size(436, 20);
-            this.lblDashboardText.TabIndex = 1;
-            this.lblDashboardText.Text = "Revisa tus indicadores clave y mantén el control de tu operación.";
-            // 
-            // lblDashboardWelcome
-            // 
-            this.lblDashboardWelcome.AutoSize = true;
-            this.lblDashboardWelcome.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblDashboardWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(47)))), ((int)(((byte)(74)))));
-            this.lblDashboardWelcome.Location = new System.Drawing.Point(35, 50);
-            this.lblDashboardWelcome.Name = "lblDashboardWelcome";
-            this.lblDashboardWelcome.Size = new System.Drawing.Size(303, 45);
-            this.lblDashboardWelcome.TabIndex = 0;
-            this.lblDashboardWelcome.Text = "Bienvenido a 808xHz";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -613,14 +330,6 @@ namespace Produccion808xHz.views
             this.panelUser.PerformLayout();
             this.topBarPanel.ResumeLayout(false);
             this.topBarPanel.PerformLayout();
-            this.contentPanel.ResumeLayout(false);
-            this.clientsPanel.ResumeLayout(false);
-            this.clientsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();
-            this.grpNewClient.ResumeLayout(false);
-            this.grpNewClient.PerformLayout();
-            this.dashboardPanel.ResumeLayout(false);
-            this.dashboardPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -647,28 +356,5 @@ namespace Produccion808xHz.views
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Button btnNotifications;
-        private System.Windows.Forms.Panel clientsPanel;
-        private System.Windows.Forms.GroupBox grpNewClient;
-        private System.Windows.Forms.TextBox txtClientNotes;
-        private System.Windows.Forms.Label lblClientNotes;
-        private System.Windows.Forms.TextBox txtClientPhone;
-        private System.Windows.Forms.Label lblClientPhone;
-        private System.Windows.Forms.TextBox txtClientEmail;
-        private System.Windows.Forms.Label lblClientEmail;
-        private System.Windows.Forms.TextBox txtClientName;
-        private System.Windows.Forms.Label lblClientName;
-        private System.Windows.Forms.Button btnAddClient;
-        private System.Windows.Forms.Label lblClientSearch;
-        private System.Windows.Forms.TextBox txtClientSearch;
-        private System.Windows.Forms.DataGridView dgvClients;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colClientName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colClientEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colClientPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colClientNotes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colClientCreated;
-        private System.Windows.Forms.Label lblClientStatus;
-        private System.Windows.Forms.Panel dashboardPanel;
-        private System.Windows.Forms.Label lblDashboardText;
-        private System.Windows.Forms.Label lblDashboardWelcome;
     }
 }

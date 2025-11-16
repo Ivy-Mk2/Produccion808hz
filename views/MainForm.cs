@@ -17,6 +17,13 @@ namespace Produccion808xHz.views
         private readonly BindingSource _clientsBinding;
         private List<Client> _clientCache;
         private Button[] _menuButtons;
+        private DashboardView _dashboardView;
+        private ClientsView _clientsView;
+        private CotizacionesView _cotizacionesView;
+        private ReservasView _reservasView;
+        private InventarioView _inventarioView;
+        private ReportesView _reportesView;
+        private UserControl _currentView;
 
         public MainForm()
         {
@@ -31,8 +38,36 @@ namespace Produccion808xHz.views
         private void MainForm_Load(object sender, EventArgs e)
         {
             _menuButtons = new[] { btnDashboard, btnClientes, btnCotizaciones, btnReservas, btnInventario, btnReportes };
+            InitializeViews();
             LoadClients();
             ShowDashboard();
+        }
+
+        private void InitializeViews()
+        {
+            _dashboardView = new DashboardView();
+            _clientsView = new ClientsView();
+            _cotizacionesView = new CotizacionesView();
+            _reservasView = new ReservasView();
+            _inventarioView = new InventarioView();
+            _reportesView = new ReportesView();
+
+            _clientsView.AddClientClicked += ClientsView_AddClientClicked;
+            _clientsView.SearchTextChanged += ClientsView_SearchTextChanged;
+
+            AddView(_dashboardView);
+            AddView(_clientsView);
+            AddView(_cotizacionesView);
+            AddView(_reservasView);
+            AddView(_inventarioView);
+            AddView(_reportesView);
+        }
+
+        private void AddView(UserControl view)
+        {
+            view.Dock = DockStyle.Fill;
+            view.Visible = false;
+            contentPanel.Controls.Add(view);
         }
 
         private void LoadClients()
@@ -47,7 +82,7 @@ namespace Produccion808xHz.views
                 _clientCache = new List<Client>();
             }
 
-            ApplyClientFilter(txtClientSearch.Text);
+            ApplyClientFilter(_clientsView?.SearchText);
         }
 
         private void ApplyClientFilter(string filter)
@@ -63,7 +98,7 @@ namespace Produccion808xHz.views
             }
 
             _clientsBinding.DataSource = new BindingList<Client>(query.ToList());
-            dgvClients.DataSource = _clientsBinding;
+            _clientsView?.BindClients(_clientsBinding);
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
@@ -76,12 +111,12 @@ namespace Produccion808xHz.views
             ShowClientsView();
         }
 
-        private void btnAddClient_Click(object sender, EventArgs e)
+        private void ClientsView_AddClientClicked(object sender, EventArgs e)
         {
-            var name = txtClientName.Text.Trim();
-            var email = txtClientEmail.Text.Trim();
-            var phone = txtClientPhone.Text.Trim();
-            var notes = txtClientNotes.Text.Trim();
+            var name = _clientsView.ClientName;
+            var email = _clientsView.ClientEmail;
+            var phone = _clientsView.ClientPhone;
+            var notes = _clientsView.ClientNotes;
 
             var validation = ValidateClient(name, email);
             if (validation.Count > 0)
@@ -103,8 +138,8 @@ namespace Produccion808xHz.views
             try
             {
                 _clientService.SaveClients(_clientsPath, _clientCache);
-                ApplyClientFilter(txtClientSearch.Text);
-                ClearClientForm();
+                ApplyClientFilter(_clientsView.SearchText);
+                _clientsView.ClearForm();
                 ShowClientStatus("Cliente agregado correctamente.", Color.FromArgb(0, 120, 80));
             }
             catch (Exception ex)
@@ -131,31 +166,21 @@ namespace Produccion808xHz.views
             return errors;
         }
 
-        private void ClearClientForm()
-        {
-            txtClientName.Text = string.Empty;
-            txtClientEmail.Text = string.Empty;
-            txtClientPhone.Text = string.Empty;
-            txtClientNotes.Text = string.Empty;
-            txtClientName.Focus();
-        }
-
         private void ShowClientStatus(string message, Color color)
         {
-            lblClientStatus.Text = message;
-            lblClientStatus.ForeColor = color;
+            _clientsView?.ShowStatus(message, color);
         }
 
-        private void txtClientSearch_TextChanged(object sender, EventArgs e)
+        private void ClientsView_SearchTextChanged(object sender, EventArgs e)
         {
-            ApplyClientFilter(txtClientSearch.Text);
+            ApplyClientFilter(_clientsView.SearchText);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (clientsPanel.Visible)
+            if (_currentView == _clientsView)
             {
-                txtClientSearch.Text = txtSearch.Text;
+                _clientsView.SearchText = txtSearch.Text;
             }
             else
             {
@@ -163,21 +188,11 @@ namespace Produccion808xHz.views
             }
         }
 
-        private void NavComingSoon(object sender, EventArgs e)
-        {
-            if (sender is Button button)
-            {
-                MessageBox.Show($"La sección '{button.Text}' estará disponible pronto.", "En construcción", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
         private void ShowDashboard()
         {
             lblSectionTitle.Text = "Dashboard";
             lblSectionSubtitle.Text = "Bienvenido, revisa el estado de tu empresa";
-            dashboardPanel.Visible = true;
-            dashboardPanel.BringToFront();
-            clientsPanel.Visible = false;
+            ShowView(_dashboardView);
             SetActiveMenuButton(btnDashboard);
         }
 
@@ -185,10 +200,74 @@ namespace Produccion808xHz.views
         {
             lblSectionTitle.Text = "Clientes";
             lblSectionSubtitle.Text = "Gestiona y registra nuevos clientes";
-            dashboardPanel.Visible = false;
-            clientsPanel.Visible = true;
-            clientsPanel.BringToFront();
+            ShowView(_clientsView);
             SetActiveMenuButton(btnClientes);
+        }
+
+        private void btnCotizaciones_Click(object sender, EventArgs e)
+        {
+            ShowCotizacionesView();
+        }
+
+        private void btnReservas_Click(object sender, EventArgs e)
+        {
+            ShowReservasView();
+        }
+
+        private void btnInventario_Click(object sender, EventArgs e)
+        {
+            ShowInventarioView();
+        }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            ShowReportesView();
+        }
+
+        private void ShowCotizacionesView()
+        {
+            lblSectionTitle.Text = "Cotizaciones";
+            lblSectionSubtitle.Text = "Supervisa tus propuestas en curso";
+            ShowView(_cotizacionesView);
+            SetActiveMenuButton(btnCotizaciones);
+        }
+
+        private void ShowReservasView()
+        {
+            lblSectionTitle.Text = "Reservas";
+            lblSectionSubtitle.Text = "Coordina la agenda de eventos";
+            ShowView(_reservasView);
+            SetActiveMenuButton(btnReservas);
+        }
+
+        private void ShowInventarioView()
+        {
+            lblSectionTitle.Text = "Inventario";
+            lblSectionSubtitle.Text = "Controla tus equipos y recursos";
+            ShowView(_inventarioView);
+            SetActiveMenuButton(btnInventario);
+        }
+
+        private void ShowReportesView()
+        {
+            lblSectionTitle.Text = "Reportes";
+            lblSectionSubtitle.Text = "Analiza métricas clave";
+            ShowView(_reportesView);
+            SetActiveMenuButton(btnReportes);
+        }
+
+        private void ShowView(UserControl view)
+        {
+            if (view == null)
+                return;
+
+            foreach (Control ctrl in contentPanel.Controls)
+            {
+                ctrl.Visible = ctrl == view;
+            }
+
+            view.BringToFront();
+            _currentView = view;
         }
 
         private void SetActiveMenuButton(Button active)
