@@ -77,9 +77,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="models\Client.cs" />
     <Compile Include="models\User.cs" />
     <Compile Include="presenters\LoginPresenter.cs" />
     <Compile Include="services\DataStructures\HashTableT.cs" />
+    <Compile Include="services\ClientService.cs" />
     <Compile Include="services\JsonStorageService.cs" />
     <Compile Include="services\UserService.cs" />
     <Compile Include="views\MainForm.cs">
@@ -88,6 +90,12 @@
     <Compile Include="views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\DashboardView.cs" />
+    <Compile Include="views\ClientsView.cs" />
+    <Compile Include="views\CotizacionesView.cs" />
+    <Compile Include="views\ReservasView.cs" />
+    <Compile Include="views\InventarioView.cs" />
+    <Compile Include="views\ReportesView.cs" />
     <Compile Include="views\ILoginView.cs" />
     <Compile Include="views\LoginForm.cs">
       <SubType>Form</SubType>
@@ -109,6 +117,7 @@
     <EmbeddedResource Include="views\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="data\Clients.json" />
     <None Include="data\Users.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
